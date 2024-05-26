@@ -1,9 +1,10 @@
-package com.example.themovieapp
+package com.example.themovieapp.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.themovieapp.R
 import com.example.themovieapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
