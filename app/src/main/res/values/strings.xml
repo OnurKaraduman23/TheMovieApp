@@ -6,4 +6,6 @@
     <string name="favorites">Favorites</string>
     <string name="profile">Profile</string>
     <string name="search">Search</string>
+    <string name="new_movies">New Movies</string>
+    <string name="popular_movies">Popular Movies</string>
 </resources>
