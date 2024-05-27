@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.hilt)  // Hilt eklentisini buraya ekliyoruz
     id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -58,12 +58,32 @@ dependencies {
     implementation(libs.converter.gson)
 
     //Hilt
-    implementation(libs.hilt.android)
+    implementation("com.google.dagger:hilt-android:2.48")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
+    kapt("com.google.dagger:hilt-android-compiler:2.48")
+
+
+
+
+
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-    implementation(libs.androidx.swiperefreshlayout)
 
-    kapt("com.google.dagger:hilt-android-compiler:2.48")
+
+
+
+
+
+    //coroutines
+    implementation(libs.coroutines)
+
+    implementation(libs.logging.interceptor)
+
+    //coil
+    implementation(libs.coil)
+
+
 }
 
 
