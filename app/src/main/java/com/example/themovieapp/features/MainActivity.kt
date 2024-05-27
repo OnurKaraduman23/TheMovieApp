@@ -1,4 +1,4 @@
-package com.example.themovieapp.presentation
+package com.example.themovieapp.features
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,9 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.themovieapp.R
 import com.example.themovieapp.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 

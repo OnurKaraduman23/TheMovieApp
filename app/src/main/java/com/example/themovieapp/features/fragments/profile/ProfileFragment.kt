@@ -1,4 +1,4 @@
-package com.example.themovieapp.presentation.fragments.profile
+package com.example.themovieapp.features.fragments.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
