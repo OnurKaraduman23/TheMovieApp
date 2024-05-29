@@ -7,7 +7,7 @@ import com.example.themovieapp.common.Constants.IMAGES_BASE_URL
 import com.example.themovieapp.common.Constants.IMAGE_200
 import com.example.themovieapp.common.extension.loadImageView
 import com.example.themovieapp.databinding.NewMoviesCardLayoutBinding
-import com.example.themovieapp.domain.model.NewMovieUIModel
+import com.example.themovieapp.domain.model.ui_model.new_movies.NewMovieUIModel
 
 
 class NewMoviesAdapter(
