@@ -4,7 +4,7 @@ import com.example.themovieapp.common.Resource
 import com.example.themovieapp.common.extension.tryFlowOrEmitError
 import com.example.themovieapp.data.mapper.toUIModel
 import com.example.themovieapp.di.IoDispatcher
-import com.example.themovieapp.domain.model.NewMovieUIModel
+import com.example.themovieapp.domain.model.ui_model.new_movies.NewMovieUIModel
 import com.example.themovieapp.domain.repository.MoviesRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
