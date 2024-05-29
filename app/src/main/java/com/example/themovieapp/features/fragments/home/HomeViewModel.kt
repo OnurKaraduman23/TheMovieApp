@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.themovieapp.common.Resource
 import com.example.themovieapp.domain.use_case.GetNewMoviesUseCase
+import com.example.themovieapp.domain.use_case.GetPopularMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,30 +17,61 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getNewMoviesUseCase: GetNewMoviesUseCase
-): ViewModel() {
+    private val getNewMoviesUseCase: GetNewMoviesUseCase,
+    private val getPopularMoviesUseCase: GetPopularMoviesUseCase
 
-    private val _uiState: MutableStateFlow<MoviesUIState> =
-        MutableStateFlow(MoviesUIState())
-    val uiState: StateFlow<MoviesUIState> = _uiState.asStateFlow()
+) : ViewModel() {
+
+    private val _newMoviesUiState: MutableStateFlow<NewMoviesUIState> =
+        MutableStateFlow(NewMoviesUIState())
+    val newMoviesUiState: StateFlow<NewMoviesUIState> = _newMoviesUiState.asStateFlow()
+
+    private val _popularMoviesUiState: MutableStateFlow<PopularMoviesUIState> =
+        MutableStateFlow(PopularMoviesUIState())
+    val popularMoviesUiState: StateFlow<PopularMoviesUIState> = _popularMoviesUiState.asStateFlow()
+
 
     init {
         getNewMovies()
+        getPopularMovies(1)
     }
 
     private fun getNewMovies() {
         viewModelScope.launch {
             getNewMoviesUseCase.getNewMovies()
-                .onStart { _uiState.update { state -> state.copy(isLoading = true) } }
-                .onCompletion { _uiState.update { state -> state.copy(isLoading = false) } }
+                .onStart { _newMoviesUiState.update { state -> state.copy(isLoading = true) } }
+                .onCompletion { _newMoviesUiState.update { state -> state.copy(isLoading = false) } }
                 .collect { dataResult ->
                     when (dataResult) {
                         is Resource.Success -> {
-                            _uiState.update { state ->
-                                state.copy( newMoviesList =  dataResult?.data!!)
+                            _newMoviesUiState.update { state ->
+                                state.copy(newMoviesList = dataResult?.data!!)
 
                             }
                         }
+
+                        is Resource.Error -> {}
+                        is Resource.Loading -> {}
+                    }
+                }
+        }
+    }
+
+
+    private fun getPopularMovies(page: Int) {
+        viewModelScope.launch {
+            getPopularMoviesUseCase.getPopularMovies(page)
+                .onStart { _popularMoviesUiState.update { state -> state.copy(isLoading = true) } }
+                .onCompletion { _popularMoviesUiState.update { state -> state.copy(isLoading = false) } }
+                .collect { dataResult ->
+                    when (dataResult) {
+                        is Resource.Success -> {
+                            _popularMoviesUiState.update { state ->
+                                state.copy(popularMoviesList = dataResult.data!!)
+
+                            }
+                        }
+
                         is Resource.Error -> {}
                         is Resource.Loading -> {}
                     }
