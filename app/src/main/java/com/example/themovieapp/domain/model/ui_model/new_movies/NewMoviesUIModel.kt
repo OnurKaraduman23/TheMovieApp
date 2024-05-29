@@ -1,4 +1,4 @@
-package com.example.themovieapp.domain.model
+package com.example.themovieapp.domain.model.ui_model.new_movies
 
 data class NewMoviesUIModel(
     val page: Int,
