@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
-import com.example.themovieapp.R
 import com.example.themovieapp.databinding.FragmentHomeBinding
 import com.example.themovieapp.features.fragments.home.adapter.NewMoviesAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,13 +32,31 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        collectUIState()
+        collectNewMoviesUIState()
+        collectPopularMoviesUIState()
+    }
+
+    private fun collectPopularMoviesUIState() {
+        lifecycleScope.launch {
+            homeViewModel.popularMoviesUiState.collect { state ->
+                if (state.popularMoviesList.isNotEmpty()) {
+//                    newMoviesAdapter = NewMoviesAdapter() { newMovies ->
+//                        findNavController().navigate(
+//                            HomeFragmentDirections.actionHomeFragmentTo....(
+//
+//                            )
+//                        )
+//                    }
+//                    binding.newMoviesRecyclerView.adapter = newMoviesAdapter
+                }
+            }
+        }
     }
 
 
-    private fun collectUIState() {
+    private fun collectNewMoviesUIState() {
         lifecycleScope.launch {
-            homeViewModel.uiState.collect { state ->
+            homeViewModel.newMoviesUiState.collect { state ->
                 if (state.newMoviesList.isNotEmpty()) {
                     newMoviesAdapter = NewMoviesAdapter(state.newMoviesList) { newMovies ->
 //                        findNavController().navigate(
