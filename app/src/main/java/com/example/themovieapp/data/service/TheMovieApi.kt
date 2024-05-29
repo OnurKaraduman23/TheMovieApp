@@ -4,7 +4,6 @@ import com.example.themovieapp.common.Constants
 import com.example.themovieapp.data.remote.dto.new_movies.NewMoviesDto
 import com.example.themovieapp.data.remote.dto.popular_movies.PopularMoviesDto
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface TheMovieApi {

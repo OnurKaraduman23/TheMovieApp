@@ -7,14 +7,14 @@ import com.google.gson.annotations.Expose
 data class PopularMoviesDto(
     @SerializedName("page")
     @Expose
-    val page: Int,
+    val page: Int= 0,
     @SerializedName("results")
     @Expose
-    val results: List<PopularMoviesResultDto>,
+    val results: List<PopularMoviesResultDto> = emptyList(),
     @SerializedName("total_pages")
     @Expose
-    val totalPages: Int,
+    val totalPages: Int = 0,
     @SerializedName("total_results")
     @Expose
-    val totalResults: Int
+    val totalResults: Int = 0
 )

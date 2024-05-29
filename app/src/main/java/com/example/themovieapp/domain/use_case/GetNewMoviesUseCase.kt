@@ -18,9 +18,8 @@ class GetNewMoviesUseCase @Inject constructor(
 
     fun getNewMovies(): Flow<Resource<List<NewMovieUIModel>>> =
         tryFlowOrEmitError(dispatcher) {
-            // NewMoviesDto -> NewMoviesUIModel dönüşümünü kullanarak
             val newMoviesDto = moviesRepository.getNewMovies()
             val newMoviesUIModel = newMoviesDto.toUIModel()
-            newMoviesUIModel.results  // Bu satır, NewMoviesUIModel içindeki NewMovieUIModel listesini döndürür
+            newMoviesUIModel.results
         }
 }
