@@ -1,15 +1,19 @@
 package com.example.themovieapp.features.fragments.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.map
 import com.example.themovieapp.databinding.FragmentHomeBinding
 import com.example.themovieapp.features.fragments.home.adapter.NewMoviesAdapter
+import com.example.themovieapp.features.fragments.home.adapter.PopularMoviesAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -20,6 +24,7 @@ class HomeFragment : Fragment() {
     private val homeViewModel: HomeViewModel by viewModels()
 
     private lateinit var newMoviesAdapter: NewMoviesAdapter
+    private lateinit var popularMoviesAdapter: PopularMoviesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,27 +37,20 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupPopularMoviesRecyclerView()
         collectNewMoviesUIState()
         collectPopularMoviesUIState()
+
     }
 
     private fun collectPopularMoviesUIState() {
         lifecycleScope.launch {
-            homeViewModel.popularMoviesUiState.collect { state ->
-                if (state.popularMoviesList.isNotEmpty()) {
-//                    newMoviesAdapter = NewMoviesAdapter() { newMovies ->
-//                        findNavController().navigate(
-//                            HomeFragmentDirections.actionHomeFragmentTo....(
-//
-//                            )
-//                        )
-//                    }
-//                    binding.newMoviesRecyclerView.adapter = newMoviesAdapter
-                }
+            homeViewModel.popularMovieList.collectLatest { pagingData ->
+                popularMoviesAdapter.submitData(pagingData)
+
             }
         }
     }
-
 
     private fun collectNewMoviesUIState() {
         lifecycleScope.launch {
@@ -71,6 +69,16 @@ class HomeFragment : Fragment() {
         }
     }
 
+
+
+
+    private fun setupPopularMoviesRecyclerView() {
+        popularMoviesAdapter = PopularMoviesAdapter()
+        binding.popularMoviesRecyclerView.apply {
+            adapter = popularMoviesAdapter
+
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
