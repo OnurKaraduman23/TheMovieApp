@@ -1,6 +1,6 @@
 package com.example.themovieapp.data.mapper
 
-import com.example.themovieapp.common.extension.tryFlowOrEmitError
+
 import com.example.themovieapp.data.remote.dto.popular_movies.PopularMoviesDto
 import com.example.themovieapp.data.remote.dto.popular_movies.PopularMoviesResultDto
 import com.example.themovieapp.domain.model.ui_model.popular_movies.PopularMovieUIModel
