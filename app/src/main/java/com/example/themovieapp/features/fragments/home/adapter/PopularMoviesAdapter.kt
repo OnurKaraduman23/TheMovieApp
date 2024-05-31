@@ -18,6 +18,8 @@ class PopularMoviesAdapter : PagingDataAdapter<PopularMovieUIModel, PopularMovie
         RecyclerView.ViewHolder(binding.root) {
         fun bind(result: PopularMovieUIModel) {
             binding.apply {
+                textViewTitle.text = result.title
+                textViewImdb.text = result.voteAverage.toString()
                 trendingImageView.loadImageView(Constants.IMAGES_BASE_URL + Constants.IMAGE_400 + result.posterPath)
                 root.setOnClickListener {
                     onItemClickListener?.invoke(result)
