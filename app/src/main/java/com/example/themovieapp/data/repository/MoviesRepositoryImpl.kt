@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.themovieapp.common.Constants
 import com.example.themovieapp.data.paging.PopularMoviesPagingSource
+import com.example.themovieapp.data.remote.dto.movie_detail.MovieDetailDto
 import com.example.themovieapp.data.remote.dto.new_movies.NewMoviesDto
 import com.example.themovieapp.data.service.TheMovieApi
 import com.example.themovieapp.domain.model.ui_model.popular_movies.PopularMovieUIModel
@@ -31,4 +32,11 @@ class MoviesRepositoryImpl @Inject constructor(
             }
         ).flow
     }
+
+    override suspend fun getMovieDetail(movieId: Int): MovieDetailDto {
+        return theMovieApi.getMovieDetail(movieId,Constants.API_KEY)
+    }
+
+
+
 }
