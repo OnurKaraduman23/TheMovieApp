@@ -10,9 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import coil.load
-import com.example.themovieapp.R
 import com.example.themovieapp.common.Constants
-import com.example.themovieapp.databinding.FragmentHomeBinding
 import com.example.themovieapp.databinding.FragmentMovieDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
