@@ -46,15 +46,6 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch {
             homeViewModel.popularMovieList.collectLatest { pagingData ->
                 popularMoviesAdapter.submitData(pagingData)
-                popularMoviesAdapter.onItemClickListener = { popularMovieId ->
-                    findNavController().navigate(
-                        HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(
-                            popularMovieId
-                        )
-                    )
-
-                }
-
             }
         }
     }
@@ -78,11 +69,13 @@ class HomeFragment : Fragment() {
 
 
     private fun setupPopularMoviesRecyclerView() {
-        popularMoviesAdapter = PopularMoviesAdapter()
-        binding.popularMoviesRecyclerView.apply {
-            adapter = popularMoviesAdapter
+        popularMoviesAdapter = PopularMoviesAdapter { movieId ->
 
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(movieId)
+            )
         }
+        binding.popularMoviesRecyclerView.adapter = popularMoviesAdapter
     }
 
     override fun onDestroyView() {
