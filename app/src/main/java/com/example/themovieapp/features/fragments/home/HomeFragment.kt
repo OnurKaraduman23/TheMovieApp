@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.map
+import androidx.navigation.fragment.findNavController
 import com.example.themovieapp.databinding.FragmentHomeBinding
 import com.example.themovieapp.features.fragments.home.adapter.NewMoviesAdapter
 import com.example.themovieapp.features.fragments.home.adapter.PopularMoviesAdapter
@@ -47,6 +47,14 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch {
             homeViewModel.popularMovieList.collectLatest { pagingData ->
                 popularMoviesAdapter.submitData(pagingData)
+                popularMoviesAdapter.onItemClickListener = { popularMovieId ->
+                    findNavController().navigate(
+                        HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(
+                            popularMovieId
+                        )
+                    )
+
+                }
 
             }
         }
@@ -56,20 +64,18 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch {
             homeViewModel.newMoviesUiState.collect { state ->
                 if (state.newMoviesList.isNotEmpty()) {
-                    newMoviesAdapter = NewMoviesAdapter(state.newMoviesList) { newMovies ->
-//                        findNavController().navigate(
-//                            HomeFragmentDirections.actionHomeFragmentTo....(
-//
-//                            )
-//                        )
+                    newMoviesAdapter = NewMoviesAdapter(state.newMoviesList) { newMovieId ->
+                        findNavController().navigate(
+                            HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(
+                                newMovieId
+                            )
+                        )
                     }
                     binding.newMoviesRecyclerView.adapter = newMoviesAdapter
                 }
             }
         }
     }
-
-
 
 
     private fun setupPopularMoviesRecyclerView() {

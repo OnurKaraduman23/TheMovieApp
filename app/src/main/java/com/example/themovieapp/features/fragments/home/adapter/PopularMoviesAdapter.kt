@@ -10,9 +10,9 @@ import com.example.themovieapp.common.extension.loadImageView
 import com.example.themovieapp.databinding.PopularMoviesCardLayoutBinding
 import com.example.themovieapp.domain.model.ui_model.popular_movies.PopularMovieUIModel
 
-class PopularMoviesAdapter : PagingDataAdapter<PopularMovieUIModel, PopularMoviesAdapter.PopularMoviesViewHolder>(MovieItemDiffCallback()) {
+class PopularMoviesAdapter() : PagingDataAdapter<PopularMovieUIModel, PopularMoviesAdapter.PopularMoviesViewHolder>(MovieItemDiffCallback()) {
 
-    var onItemClickListener: ((PopularMovieUIModel) -> Unit)? = null
+    var onItemClickListener: ((Int) -> Unit)? = null
 
     inner class PopularMoviesViewHolder(private val binding: PopularMoviesCardLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -21,8 +21,8 @@ class PopularMoviesAdapter : PagingDataAdapter<PopularMovieUIModel, PopularMovie
                 textViewTitle.text = result.title
                 textViewImdb.text = result.voteAverage.toString()
                 trendingImageView.loadImageView(Constants.IMAGES_BASE_URL + Constants.IMAGE_400 + result.posterPath)
-                root.setOnClickListener {
-                    onItemClickListener?.invoke(result)
+                popularConstraintLayout.setOnClickListener {
+                    onItemClickListener?.invoke(result.id)
                 }
             }
         }

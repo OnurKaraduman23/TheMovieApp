@@ -12,25 +12,29 @@ import com.example.themovieapp.domain.model.ui_model.new_movies.NewMovieUIModel
 
 class NewMoviesAdapter(
     private val newMoviesList: List<NewMovieUIModel>,
-    private val onItemClickListener: (String) -> Unit,
+    private val onItemClickListener: (Int) -> Unit,
 ) : RecyclerView.Adapter<NewMoviesAdapter.NewMoviesViewHolder>() {
 
-    class NewMoviesViewHolder(private val binding: NewMoviesCardLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(newMovieItem: NewMovieUIModel, onItemClickListener: (String) -> Unit) {
+    class NewMoviesViewHolder(private val binding: NewMoviesCardLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(newMovieItem: NewMovieUIModel, onItemClickListener: (Int) -> Unit) {
             binding.apply {
                 movieTitleTextView.text = newMovieItem.title
                 circleImageView.loadImageView(IMAGES_BASE_URL + IMAGE_200 + newMovieItem.posterPath)
+
+
+                constLayoutCardView.setOnClickListener {
+                    onItemClickListener.invoke(newMovieItem.id)
+                }
             }
 
 
-//            binding.newMovieItem.setOnClickListener {
-//                onItemClickListener.invoke(newMovieItem.id)
-//            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewMoviesViewHolder {
-        val binding = NewMoviesCardLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            NewMoviesCardLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NewMoviesViewHolder(binding)
     }
 
