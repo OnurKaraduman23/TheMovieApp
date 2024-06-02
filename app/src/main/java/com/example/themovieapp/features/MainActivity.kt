@@ -1,6 +1,7 @@
 package com.example.themovieapp.features
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -21,5 +22,11 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         binding.bottomAppBar.setupWithNavController(navController)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.movieDetailFragment -> binding.bottomAppBar.visibility = View.GONE
+                else -> binding.bottomAppBar.visibility = View.VISIBLE
+            }
+        }
     }
 }
