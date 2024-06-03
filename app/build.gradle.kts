@@ -60,6 +60,11 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.converter.gson)
 
+    //room database
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+
     //Hilt
     implementation("com.google.dagger:hilt-android:2.48")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
