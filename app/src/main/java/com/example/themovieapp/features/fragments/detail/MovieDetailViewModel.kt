@@ -24,7 +24,7 @@ class MovieDetailViewModel @Inject constructor(
     val movieDetailUiState: StateFlow<DetailMovieUIState> = _movieDetailUiState.asStateFlow()
 
 
-     fun getMovieDetail(movieId: Int) {
+    fun getMovieDetail(movieId: Int) {
         viewModelScope.launch {
             getMovieDetailUseCase.getMovieDetail(movieId)
                 .onStart { _movieDetailUiState.update { state -> state.copy(isLoading = true) } }
