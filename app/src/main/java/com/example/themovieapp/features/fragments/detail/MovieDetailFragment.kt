@@ -2,14 +2,14 @@ package com.example.themovieapp.features.fragments.detail
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import androidx.viewbinding.ViewBinding
 import coil.load
+import com.example.moviecaseapp.common.binding_adapter.BindingFragment
 import com.example.themovieapp.common.Constants
 import com.example.themovieapp.databinding.FragmentMovieDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,26 +17,22 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MovieDetailFragment : Fragment() {
+class MovieDetailFragment : BindingFragment<FragmentMovieDetailBinding>() {
 
-    private var _binding: FragmentMovieDetailBinding? = null
-    private val binding get() = _binding!!
+
+    override val bindingInflater: (LayoutInflater) -> ViewBinding
+        get() = FragmentMovieDetailBinding::inflate
 
     private val detailMovieViewModel: MovieDetailViewModel by viewModels()
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
 
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val bundle: MovieDetailFragmentArgs by navArgs()
         val movieId = bundle.movieId
         Log.e("Dante", movieId.toString())
         detailMovieViewModel.getMovieDetail(movieId)
         collectMovieDetailUIState()
-
-
-        return binding.root
     }
 
     private fun collectMovieDetailUIState() {
@@ -57,8 +53,4 @@ class MovieDetailFragment : Fragment() {
     }
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

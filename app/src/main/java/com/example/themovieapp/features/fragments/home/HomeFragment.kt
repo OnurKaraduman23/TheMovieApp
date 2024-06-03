@@ -1,13 +1,13 @@
 package com.example.themovieapp.features.fragments.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.viewbinding.ViewBinding
+import com.example.moviecaseapp.common.binding_adapter.BindingFragment
 import com.example.themovieapp.databinding.FragmentHomeBinding
 import com.example.themovieapp.features.fragments.home.adapter.NewMoviesAdapter
 import com.example.themovieapp.features.fragments.home.adapter.PopularMoviesAdapter
@@ -16,23 +16,13 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
-
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+class HomeFragment : BindingFragment<FragmentHomeBinding>() {
     private val homeViewModel: HomeViewModel by viewModels()
-
     private lateinit var newMoviesAdapter: NewMoviesAdapter
     private lateinit var popularMoviesAdapter: PopularMoviesAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
+    override val bindingInflater: (LayoutInflater) -> ViewBinding
+        get() = FragmentHomeBinding::inflate
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -78,9 +68,5 @@ class HomeFragment : Fragment() {
         binding.popularMoviesRecyclerView.adapter = popularMoviesAdapter
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
 }
