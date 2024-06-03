@@ -66,17 +66,11 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
 
-
-
-
+    //circle image view
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-
-
-
-
-
 
     //coroutines
     implementation(libs.coroutines)
@@ -85,8 +79,6 @@ dependencies {
 
     //coil
     implementation(libs.coil)
-
-
 }
 
 
