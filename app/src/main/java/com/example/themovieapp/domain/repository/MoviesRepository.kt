@@ -5,6 +5,7 @@ import androidx.paging.PagingData
 import com.example.themovieapp.data.remote.dto.movie_detail.MovieDetailDto
 import com.example.themovieapp.data.remote.dto.new_movies.NewMoviesDto
 import com.example.themovieapp.domain.model.ui_model.popular_movies.PopularMovieUIModel
+import com.example.themovieapp.domain.model.ui_model.search_movie.SearchMovieUIModel
 import kotlinx.coroutines.flow.Flow
 
 
@@ -13,4 +14,6 @@ interface MoviesRepository {
 
     suspend fun getPopularMovies(): Flow<PagingData<PopularMovieUIModel>>
     suspend fun getMovieDetail(movieId: Int): MovieDetailDto
+
+    suspend fun getSearchMovies(query: String): Flow<PagingData<SearchMovieUIModel>>
 }
