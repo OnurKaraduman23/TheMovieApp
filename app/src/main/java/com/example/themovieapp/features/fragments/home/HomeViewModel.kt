@@ -1,6 +1,5 @@
 package com.example.themovieapp.features.fragments.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -31,8 +30,8 @@ class HomeViewModel @Inject constructor(
         MutableStateFlow(NewMoviesUIState())
     val newMoviesUiState: StateFlow<NewMoviesUIState> = _newMoviesUiState.asStateFlow()
 
-    private val _popularmovieList = MutableStateFlow<PagingData<PopularMovieUIModel>>(PagingData.empty())
-    val popularMovieList: StateFlow<PagingData<PopularMovieUIModel>> get()= _popularmovieList
+    private val _popularMovieList = MutableStateFlow<PagingData<PopularMovieUIModel>>(PagingData.empty())
+    val popularMovieList: StateFlow<PagingData<PopularMovieUIModel>> get()= _popularMovieList
 
     init {
         getNewMovies()
@@ -65,7 +64,7 @@ class HomeViewModel @Inject constructor(
             getPopularMoviesUseCase.getPopularMovies()
                 .cachedIn(viewModelScope)
                 .collectLatest { pagingData ->
-                    _popularmovieList.value = pagingData
+                    _popularMovieList.value = pagingData
                 }
         }
     }
