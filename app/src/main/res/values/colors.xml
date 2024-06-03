@@ -8,6 +8,8 @@
     <color name="bottomAppBarItemPassive">#FF9800</color>
 
     <color name="lightMediumGray">#80D1D1D1</color>
+    <color name="surface">#1E1F27</color>
+    <color name="search_color">#5A5A5C</color>
 
     <color name="transparentImdbBGColor">#90000000</color>
     <color name="imdbTextColor">#DFAD18</color>
