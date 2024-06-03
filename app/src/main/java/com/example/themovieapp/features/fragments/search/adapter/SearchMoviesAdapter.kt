@@ -1,7 +1,6 @@
 package com.example.themovieapp.features.fragments.search.adapter
 
-import android.media.MediaPlayer.OnInfoListener
-import android.util.Log
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
