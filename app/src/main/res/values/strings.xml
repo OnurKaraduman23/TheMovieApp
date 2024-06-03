@@ -9,4 +9,14 @@
     <string name="new_movies">New Movies</string>
     <string name="popular_movies">Popular Movies</string>
     <string name="imdb">Imdb:</string>
+
+    <!-- Profile Fragment-->
+    <string name="logout">Logout</string>
+    <string name="notifications">Notifications</string>
+    <string name="regional">Regional</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="personal_details">Personal Details</string>
+    <string name="user_name">User Name</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="change_password">Change Password</string>
 </resources>

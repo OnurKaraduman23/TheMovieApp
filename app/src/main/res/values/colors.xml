@@ -3,6 +3,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparentGray">#CC808080</color>
+    <color name="darkGray">#4B4B4B</color>
+    <color name="colorPrimary">#6200EA</color>
+    <color name="blue">#748BF6</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="dateColor">#8983B8</color>
+    <color name="green">#32E809</color>
 
     <color name="bottomAppBarItemActive">#DC2222</color>
     <color name="bottomAppBarItemPassive">#FF9800</color>
@@ -13,4 +19,5 @@
 
     <color name="transparentImdbBGColor">#90000000</color>
     <color name="imdbTextColor">#DFAD18</color>
+    <color name="profileCardBackground">#273048</color>
 </resources>
