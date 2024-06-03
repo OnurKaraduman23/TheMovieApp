@@ -13,7 +13,6 @@ import com.example.themovieapp.domain.model.ui_model.popular_movies.PopularMovie
 import com.example.themovieapp.domain.model.ui_model.search_movie.SearchMovieUIModel
 import com.example.themovieapp.domain.repository.MoviesRepository
 import kotlinx.coroutines.flow.Flow
-import retrofit2.http.Query
 import javax.inject.Inject
 
 class MoviesRepositoryImpl @Inject constructor(

@@ -5,7 +5,6 @@ import androidx.paging.PagingState
 import com.example.themovieapp.common.Constants
 import com.example.themovieapp.data.mapper.toUIModel
 import com.example.themovieapp.data.service.TheMovieApi
-import com.example.themovieapp.domain.model.ui_model.popular_movies.PopularMovieUIModel
 import com.example.themovieapp.domain.model.ui_model.search_movie.SearchMovieUIModel
 import javax.inject.Inject
 
