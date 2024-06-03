@@ -4,6 +4,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.themovieapp.common.Constants
+import com.example.themovieapp.data.local.favorite_movies.MovieEntity
+import com.example.themovieapp.data.local.favorite_movies.datasource.FavoritesDataSource
 import com.example.themovieapp.data.paging.PopularMoviesPagingSource
 import com.example.themovieapp.data.paging.SearchMoviesPagingSource
 import com.example.themovieapp.data.remote.dto.movie_detail.MovieDetailDto
@@ -16,7 +18,8 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class MoviesRepositoryImpl @Inject constructor(
-    private val theMovieApi: TheMovieApi
+    private val theMovieApi: TheMovieApi,
+    private val favoritesDataSource: FavoritesDataSource
 ) : MoviesRepository {
     override suspend fun getNewMovies(): NewMoviesDto {
         return theMovieApi.getNewMovies(Constants.API_KEY)
@@ -51,6 +54,27 @@ class MoviesRepositoryImpl @Inject constructor(
             }
         ).flow
     }
+
+    override suspend fun addFavorite(
+        movieId: Int,
+        genreIds: String,
+        posterPath: String,
+        overview: String,
+        releaseDate: String,
+        title: String,
+        voteAverage: Double
+    ) = favoritesDataSource.addFavorites(
+        movieId,
+        genreIds,
+        posterPath,
+        overview,
+        releaseDate,
+        title,
+        voteAverage
+    )
+
+    override fun getFavorites(): Flow<List<MovieEntity>> =
+        favoritesDataSource.getFavorites()
 
 
 }
