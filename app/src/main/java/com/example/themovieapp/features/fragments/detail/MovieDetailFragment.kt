@@ -12,6 +12,8 @@ import coil.load
 import com.example.moviecaseapp.common.binding_adapter.BindingFragment
 import com.example.themovieapp.common.Constants
 import com.example.themovieapp.databinding.FragmentMovieDetailBinding
+import com.example.themovieapp.domain.model.ui_model.detail_movie.DetailMovieUIModel
+import com.example.themovieapp.features.fragments.favorites.FavoritesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -24,6 +26,7 @@ class MovieDetailFragment : BindingFragment<FragmentMovieDetailBinding>() {
         get() = FragmentMovieDetailBinding::inflate
 
     private val detailMovieViewModel: MovieDetailViewModel by viewModels()
+    private val favoriteViewModel: FavoritesViewModel by viewModels()
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,10 +49,27 @@ class MovieDetailFragment : BindingFragment<FragmentMovieDetailBinding>() {
                         imdbRatingTextView.text = detailMovie.voteAverage.toString()
                         detailsTextView.text = detailMovie.genre
                         releaseDateTextView.text = detailMovie.releaseDate
+
+                        addFavImageView.setOnClickListener {
+                            addFavorite(detailMovie)
+                        }
+
                     }
                 }
             }
         }
+    }
+
+    fun addFavorite(detailMovie: DetailMovieUIModel) {
+        favoriteViewModel.addFavorite(
+            movieId = detailMovie.id,
+            genreIds = detailMovie.genre,
+            posterPath = detailMovie.posterPath,
+            overview = detailMovie.overview,
+            releaseDate = detailMovie.releaseDate,
+            title = detailMovie.title,
+            voteAverage = detailMovie.voteAverage
+        )
     }
 
 
