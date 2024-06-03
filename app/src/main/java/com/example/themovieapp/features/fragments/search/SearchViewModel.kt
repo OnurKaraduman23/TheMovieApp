@@ -1,14 +1,10 @@
 package com.example.themovieapp.features.fragments.search
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import androidx.paging.map
-import com.example.themovieapp.domain.model.ui_model.popular_movies.PopularMovieUIModel
 import com.example.themovieapp.domain.model.ui_model.search_movie.SearchMovieUIModel
-import com.example.themovieapp.domain.use_case.GetNewMoviesUseCase
 import com.example.themovieapp.domain.use_case.GetSearchMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
