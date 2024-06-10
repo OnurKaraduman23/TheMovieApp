@@ -1,15 +1,17 @@
 package com.example.themovieapp.features.fragments.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import androidx.viewbinding.ViewBinding
 import coil.load
 import com.example.moviecaseapp.common.binding_adapter.BindingFragment
+import com.example.themovieapp.R
 import com.example.themovieapp.common.Constants
 import com.example.themovieapp.databinding.FragmentMovieDetailBinding
 import com.example.themovieapp.domain.model.ui_model.detail_movie.DetailMovieUIModel
@@ -33,9 +35,14 @@ class MovieDetailFragment : BindingFragment<FragmentMovieDetailBinding>() {
         super.onViewCreated(view, savedInstanceState)
         val bundle: MovieDetailFragmentArgs by navArgs()
         val movieId = bundle.movieId
-        Log.e("Dante", movieId.toString())
+
         detailMovieViewModel.getMovieDetail(movieId)
         collectMovieDetailUIState()
+        favoriteViewModel.checkIfFavorite(movieId)
+
+        //check favorites
+        observeFavoriteStatus()
+
     }
 
     private fun collectMovieDetailUIState() {
@@ -70,6 +77,23 @@ class MovieDetailFragment : BindingFragment<FragmentMovieDetailBinding>() {
             title = detailMovie.title,
             voteAverage = detailMovie.voteAverage
         )
+    }
+
+    fun setImageViewResource(isFavorite: Boolean) {
+        val resource = if (isFavorite) R.drawable.ic_add_fill_fav else R.drawable.ic_add_favorite
+        binding.addFavImageView.setImageResource(resource)
+    }
+
+    private fun observeFavoriteStatus() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    favoriteViewModel.isFavorite.collect { isFavorite ->
+                        setImageViewResource(isFavorite)
+                    }
+                }
+            }
+        }
     }
 
 
