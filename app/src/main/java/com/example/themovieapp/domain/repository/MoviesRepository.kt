@@ -34,4 +34,8 @@ interface MoviesRepository {
 
     fun getFavorites(): Flow<List<MovieEntity>>
 
+    suspend fun deleteFavorites(movieId: Int)
+
+    suspend fun isFavorite(movieId: Int): Boolean
+
 }

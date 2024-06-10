@@ -76,5 +76,12 @@ class MoviesRepositoryImpl @Inject constructor(
     override fun getFavorites(): Flow<List<MovieEntity>> =
         favoritesDataSource.getFavorites()
 
+    override suspend fun deleteFavorites(movieId: Int) =
+        favoritesDataSource.deleteFavorites(movieId)
+
+    override suspend fun isFavorite(movieId: Int): Boolean {
+        return favoritesDataSource.isFavorite(movieId)
+    }
+
 
 }
