@@ -13,8 +13,8 @@ import com.example.themovieapp.databinding.FavoritesCardDesignBinding
 class FavoritesAdapter(
     private val onItemClickListenerFavIcon: (MovieEntity) -> Unit,
     private val onItemClickListenerDetail: (Int) -> Unit,
-
-    ) : ListAdapter<MovieEntity, FavoritesAdapter.MyViewHolder>(DiffCallback()) {
+    private val onItemClickListenerDelete: (Int) -> Unit
+) : ListAdapter<MovieEntity, FavoritesAdapter.MyViewHolder>(DiffCallback()) {
 
     class MyViewHolder(private val binding: FavoritesCardDesignBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -22,7 +22,8 @@ class FavoritesAdapter(
         fun bind(
             favorites: MovieEntity,
             onItemClickListenerFavIcon: (MovieEntity) -> Unit,
-            onItemClickListenerDetail: (Int) -> Unit
+            onItemClickListenerDetail: (Int) -> Unit,
+            onItemClickListenerDelete: (Int) -> Unit
         ) {
             binding.apply {
                 imageMovie.loadImageView(Constants.IMAGES_BASE_URL + Constants.IMAGE_400 + favorites.posterPath)
@@ -35,6 +36,10 @@ class FavoritesAdapter(
                 favCardView.setOnClickListener {
                     onItemClickListenerDetail.invoke(favorites.movieId)
                 }
+                addFavImageView.setOnClickListener {
+                    onItemClickListenerDelete.invoke(favorites.movieId)
+                }
+
             }
         }
 
@@ -53,7 +58,12 @@ class FavoritesAdapter(
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentFavoriteMovie = getItem(position)
-        holder.bind(currentFavoriteMovie, onItemClickListenerFavIcon, onItemClickListenerDetail)
+        holder.bind(
+            currentFavoriteMovie,
+            onItemClickListenerFavIcon,
+            onItemClickListenerDetail,
+            onItemClickListenerDelete
+        )
     }
 
     class DiffCallback : DiffUtil.ItemCallback<MovieEntity>() {
