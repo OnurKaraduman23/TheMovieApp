@@ -33,4 +33,11 @@ class FavoritesDataSource @Inject constructor(
 
     fun getFavorites(): Flow<List<MovieEntity>> =
         movieDao.getFavorites()
+
+    suspend fun deleteFavorites(movieId: Int) =
+        movieDao.deleteFav(movieId)
+
+    suspend fun isFavorite(movieId: Int): Boolean {
+        return movieDao.isFavorite(movieId)
+    }
 }
