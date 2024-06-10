@@ -46,6 +46,10 @@ class FavoritesFragment : BindingFragment<FragmentFavoritesBinding>() {
             findNavController().navigate(
                 FavoritesFragmentDirections.actionFavoritesFragmentToMovieDetailFragment(movieId)
             )
+        }, { movieId ->
+            lifecycleScope.launch {
+                favoritesViewModel.deleteFavorites(movieId)
+            }
         })
         binding.favoriteRecyvlerView.apply {
             adapter = favoritesAdapter
