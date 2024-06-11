@@ -24,30 +24,68 @@ pagingCommonAndroid = "3.3.0"
 leanbackPaging = "1.1.0-alpha11"
 
 [libraries]
+# AndroidX Core KTX
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+
+# AndroidX Navigation UI KTX
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationUiKtx" }
+
+# AndroidX Navigation Fragment KTX
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+
+# AndroidX SwipeRefreshLayout
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
+
+# Gson Converter
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+
+# Gson
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+
+# Hilt
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 
+# JUnit
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+
+# Espresso Core
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+
+# AndroidX AppCompat
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+
+# Material Components
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+# AndroidX Activity
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+
+# AndroidX ConstraintLayout
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+# Retrofit
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 
+# Coroutines
 coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+
+# Logging Interceptor
 logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
+
+# Coil
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
+
+# AndroidX Paging Common for Android
 androidx-paging-common-android = { group = "androidx.paging", name = "paging-common-android", version.ref = "pagingCommonAndroid" }
+
+# AndroidX Leanback Paging
 androidx-leanback-paging = { group = "androidx.leanback", name = "leanback-paging", version.ref = "leanbackPaging" }
 
 [plugins]
+# Android Application Plugin
 android-application = { id = "com.android.application", version.ref = "agp" }
+
+# Kotlin Android Plugin
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

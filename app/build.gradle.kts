@@ -44,46 +44,63 @@ android {
 
 dependencies {
 
+    // AndroidX Core KTX
     implementation(libs.androidx.core.ktx)
+
+    // AndroidX AppCompat
     implementation(libs.androidx.appcompat)
+
+    // Material Components
     implementation(libs.material)
+
+    // AndroidX Activity
     implementation(libs.androidx.activity)
+
+    // AndroidX ConstraintLayout
     implementation(libs.androidx.constraintlayout)
+
+    // AndroidX Paging Common for Android
     implementation(libs.androidx.paging.common.android)
+
+    // AndroidX Leanback Paging
     implementation(libs.androidx.leanback.paging)
+
+    // JUnit
     testImplementation(libs.junit)
+
+    // AndroidX JUnit
     androidTestImplementation(libs.androidx.junit)
+
+    // AndroidX Espresso Core
     androidTestImplementation(libs.androidx.espresso.core)
 
-    //Retrofit
+    // Retrofit
     implementation(libs.retrofit)
     implementation(libs.gson)
     implementation(libs.converter.gson)
 
-    //room database
+    // Room Database
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
 
-    //Hilt
+    // Hilt
     implementation("com.google.dagger:hilt-android:2.48")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
 
-    //circle image view
+    // Circle Image View
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
+    // AndroidX Navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
-    //coroutines
+    // Coroutines
     implementation(libs.coroutines)
 
+    // Logging Interceptor
     implementation(libs.logging.interceptor)
 
-    //coil
+    // Coil
     implementation(libs.coil)
 }
-
-
