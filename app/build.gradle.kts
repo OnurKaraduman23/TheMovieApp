@@ -80,9 +80,9 @@ dependencies {
     implementation(libs.converter.gson)
 
     // Room Database
-    implementation("androidx.room:room-runtime:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    kapt(libs.androidx.room.compiler)
 
     // Hilt
     implementation("com.google.dagger:hilt-android:2.48")

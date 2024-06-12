@@ -22,6 +22,9 @@ coil = "2.5.0"
 hilt = "2.49"
 pagingCommonAndroid = "3.3.0"
 leanbackPaging = "1.1.0-alpha11"
+# Room
+roomVersion = "2.6.1"
+
 
 [libraries]
 # AndroidX Core KTX
@@ -38,6 +41,10 @@ androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefre
 
 # Gson Converter
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+#Room
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomVersion" }
 
 # Gson
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
