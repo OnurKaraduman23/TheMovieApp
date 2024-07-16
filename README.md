@@ -47,8 +47,6 @@ The local database is managed using **Room**, which provides an abstraction laye
 - **Coil**: For image loading.
 - **CircleImageView**: For displaying circular images.
 - **Paging**: For implementing pagination in the movie list.
-- **JUnit**: For unit testing.
-- **Espresso**: For UI testing.
 
 ### Project Structure
 The project structure follows a modular approach, separating concerns and responsibilities across different packages and classes:
